@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31710.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DedDom", "DedDom\DedDom.csproj", "{03CC0D96-AD64-4CDA-8B1B-42B1A64ECBDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03CC0D96-AD64-4CDA-8B1B-42B1A64ECBDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03CC0D96-AD64-4CDA-8B1B-42B1A64ECBDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03CC0D96-AD64-4CDA-8B1B-42B1A64ECBDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03CC0D96-AD64-4CDA-8B1B-42B1A64ECBDD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15B7300A-1142-4762-AD73-5D85AF1F57C3}
+	EndGlobalSection
+EndGlobal

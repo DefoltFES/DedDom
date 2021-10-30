@@ -1,0 +1,767 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="heroku_b27ae8c6ecb20b8Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="class">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="classrom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" />
+          <Property Name="Id_teacher" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="group_student">
+          <Key>
+            <PropertyRef Name="Id_Group" />
+            <PropertyRef Name="Id_Student" />
+          </Key>
+          <Property Name="Id_Group" Type="int" Nullable="false" />
+          <Property Name="Id_Student" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="schedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Subject" Type="int" Nullable="false" />
+          <Property Name="Start_Time" Type="time" Precision="0" />
+          <Property Name="End_Time" Type="time" Precision="0" />
+          <Property Name="Id_Group" Type="int" Nullable="false" />
+          <Property Name="Id_Classroom" Type="int" Nullable="false" />
+          <Property Name="Id_Week_Day" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" />
+          <Property Name="Surname" Type="varchar" MaxLength="45" />
+          <Property Name="Middlename" Type="varchar" MaxLength="45" />
+          <Property Name="Id_Class" Type="int" Nullable="false" />
+          <Property Name="BirthDate" Type="date" />
+        </EntityType>
+        <EntityType Name="subject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="teacher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" />
+          <Property Name="Surname" Type="varchar" MaxLength="45" />
+          <Property Name="Middlename" Type="varchar" MaxLength="45" />
+          <Property Name="DateBirth" Type="date" />
+          <Property Name="Login" Type="varchar" MaxLength="85" />
+          <Property Name="Password" Type="varchar" MaxLength="45" />
+          <Property Name="Role" Type="int" />
+        </EntityType>
+        <EntityType Name="teacher_subject">
+          <Key>
+            <PropertyRef Name="Id_Teacher" />
+            <PropertyRef Name="Id_Subject" />
+          </Key>
+          <Property Name="Id_Teacher" Type="int" Nullable="false" />
+          <Property Name="Id_Subject" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="visit_log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Schedule" Type="int" Nullable="false" />
+          <Property Name="Id_Student" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" />
+          <Property Name="IsPresent" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="week_day">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <Association Name="fk01_group_group_student">
+          <End Role="group" Type="Self.group" Multiplicity="1" />
+          <End Role="group_student" Type="Self.group_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="group_student">
+              <PropertyRef Name="Id_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_role_teacher">
+          <End Role="roles" Type="Self.roles" Multiplicity="0..1" />
+          <End Role="teacher" Type="Self.teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="teacher">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_student_class">
+          <End Role="class" Type="Self.class" Multiplicity="1" />
+          <End Role="student" Type="Self.student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="Id_Class" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_student_visit">
+          <End Role="student" Type="Self.student" Multiplicity="1" />
+          <End Role="visit_log" Type="Self.visit_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="visit_log">
+              <PropertyRef Name="Id_Student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_subject_schedule">
+          <End Role="subject" Type="Self.subject" Multiplicity="1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="Id_Subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_subject_teacher_subject">
+          <End Role="subject" Type="Self.subject" Multiplicity="1" />
+          <End Role="teacher_subject" Type="Self.teacher_subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="teacher_subject">
+              <PropertyRef Name="Id_Subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_teacher_group">
+          <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+          <End Role="group" Type="Self.group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="group">
+              <PropertyRef Name="Id_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_group_shedule">
+          <End Role="group" Type="Self.group" Multiplicity="1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="Id_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_schedule_visit">
+          <End Role="schedule" Type="Self.schedule" Multiplicity="1" />
+          <End Role="visit_log" Type="Self.visit_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="schedule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="visit_log">
+              <PropertyRef Name="Id_Schedule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_student_group_student">
+          <End Role="student" Type="Self.student" Multiplicity="1" />
+          <End Role="group_student" Type="Self.group_student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="group_student">
+              <PropertyRef Name="Id_Student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_teacher_teacher_subject">
+          <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+          <End Role="teacher_subject" Type="Self.teacher_subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="teacher_subject">
+              <PropertyRef Name="Id_Teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk03_weekday_schedule">
+          <End Role="week_day" Type="Self.week_day" Multiplicity="1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="week_day">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="Id_Week_Day" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk04_classroom_schedule">
+          <End Role="classrom" Type="Self.classrom" Multiplicity="1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classrom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="Id_Classroom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="heroku_b27ae8c6ecb20b8ModelStoreContainer">
+          <EntitySet Name="class" EntityType="Self.class" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
+          <EntitySet Name="classrom" EntityType="Self.classrom" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
+          <EntitySet Name="group" EntityType="Self.group" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
+          <EntitySet Name="group_student" EntityType="Self.group_student" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
+          <EntitySet Name="roles" EntityType="Self.roles" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
+          <EntitySet Name="schedule" EntityType="Self.schedule" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
+          <EntitySet Name="student" EntityType="Self.student" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
+          <EntitySet Name="subject" EntityType="Self.subject" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
+          <EntitySet Name="teacher" EntityType="Self.teacher" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
+          <EntitySet Name="teacher_subject" EntityType="Self.teacher_subject" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
+          <EntitySet Name="visit_log" EntityType="Self.visit_log" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
+          <EntitySet Name="week_day" EntityType="Self.week_day" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
+          <AssociationSet Name="fk01_group_group_student" Association="Self.fk01_group_group_student">
+            <End Role="group" EntitySet="group" />
+            <End Role="group_student" EntitySet="group_student" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_role_teacher" Association="Self.fk01_role_teacher">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="teacher" EntitySet="teacher" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_student_class" Association="Self.fk01_student_class">
+            <End Role="class" EntitySet="class" />
+            <End Role="student" EntitySet="student" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_student_visit" Association="Self.fk01_student_visit">
+            <End Role="student" EntitySet="student" />
+            <End Role="visit_log" EntitySet="visit_log" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_subject_schedule" Association="Self.fk01_subject_schedule">
+            <End Role="subject" EntitySet="subject" />
+            <End Role="schedule" EntitySet="schedule" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_subject_teacher_subject" Association="Self.fk01_subject_teacher_subject">
+            <End Role="subject" EntitySet="subject" />
+            <End Role="teacher_subject" EntitySet="teacher_subject" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_teacher_group" Association="Self.fk01_teacher_group">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="group" EntitySet="group" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_group_shedule" Association="Self.fk02_group_shedule">
+            <End Role="group" EntitySet="group" />
+            <End Role="schedule" EntitySet="schedule" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_schedule_visit" Association="Self.fk02_schedule_visit">
+            <End Role="schedule" EntitySet="schedule" />
+            <End Role="visit_log" EntitySet="visit_log" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_student_group_student" Association="Self.fk02_student_group_student">
+            <End Role="student" EntitySet="student" />
+            <End Role="group_student" EntitySet="group_student" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_teacher_teacher_subject" Association="Self.fk02_teacher_teacher_subject">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="teacher_subject" EntitySet="teacher_subject" />
+          </AssociationSet>
+          <AssociationSet Name="fk03_weekday_schedule" Association="Self.fk03_weekday_schedule">
+            <End Role="week_day" EntitySet="week_day" />
+            <End Role="schedule" EntitySet="schedule" />
+          </AssociationSet>
+          <AssociationSet Name="fk04_classroom_schedule" Association="Self.fk04_classroom_schedule">
+            <End Role="classrom" EntitySet="classrom" />
+            <End Role="schedule" EntitySet="schedule" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="heroku_b27ae8c6ecb20b8Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="class">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="students" Relationship="Self.fk01_student_class" FromRole="class" ToRole="student" />
+        </EntityType>
+        <EntityType Name="classrom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="schedules" Relationship="Self.fk04_classroom_schedule" FromRole="classrom" ToRole="schedule" />
+        </EntityType>
+        <EntityType Name="group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Id_teacher" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="teacher" Relationship="Self.fk01_teacher_group" FromRole="group" ToRole="teacher" />
+          <NavigationProperty Name="schedules" Relationship="Self.fk02_group_shedule" FromRole="group" ToRole="schedule" />
+          <NavigationProperty Name="students" Relationship="Self.group_student" FromRole="group" ToRole="student" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Role1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="teachers" Relationship="Self.fk01_role_teacher" FromRole="roles" ToRole="teacher" />
+        </EntityType>
+        <EntityType Name="schedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Subject" Type="Int32" Nullable="false" />
+          <Property Name="Start_Time" Type="Time" />
+          <Property Name="End_Time" Type="Time" />
+          <Property Name="Id_Group" Type="Int32" Nullable="false" />
+          <Property Name="Id_Classroom" Type="Int32" Nullable="false" />
+          <Property Name="Id_Week_Day" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="classrom" Relationship="Self.fk04_classroom_schedule" FromRole="schedule" ToRole="classrom" />
+          <NavigationProperty Name="group" Relationship="Self.fk02_group_shedule" FromRole="schedule" ToRole="group" />
+          <NavigationProperty Name="subject" Relationship="Self.fk01_subject_schedule" FromRole="schedule" ToRole="subject" />
+          <NavigationProperty Name="visit_log" Relationship="Self.fk02_schedule_visit" FromRole="schedule" ToRole="visit_log" />
+          <NavigationProperty Name="week_day" Relationship="Self.fk03_weekday_schedule" FromRole="schedule" ToRole="week_day" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Middlename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Id_Class" Type="Int32" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" />
+          <NavigationProperty Name="class" Relationship="Self.fk01_student_class" FromRole="student" ToRole="class" />
+          <NavigationProperty Name="visit_log" Relationship="Self.fk01_student_visit" FromRole="student" ToRole="visit_log" />
+          <NavigationProperty Name="groups" Relationship="Self.group_student" FromRole="student" ToRole="group" />
+        </EntityType>
+        <EntityType Name="subject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="schedules" Relationship="Self.fk01_subject_schedule" FromRole="subject" ToRole="schedule" />
+          <NavigationProperty Name="teachers" Relationship="Self.teacher_subject" FromRole="subject" ToRole="teacher" />
+        </EntityType>
+        <EntityType Name="teacher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Middlename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="DateBirth" Type="DateTime" />
+          <Property Name="Login" Type="String" MaxLength="85" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="Int32" />
+          <NavigationProperty Name="groups" Relationship="Self.fk01_teacher_group" FromRole="teacher" ToRole="group" />
+          <NavigationProperty Name="role1" Relationship="Self.fk01_role_teacher" FromRole="teacher" ToRole="roles" />
+          <NavigationProperty Name="subjects" Relationship="Self.teacher_subject" FromRole="teacher" ToRole="subject" />
+        </EntityType>
+        <EntityType Name="visit_log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Schedule" Type="Int32" Nullable="false" />
+          <Property Name="Id_Student" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" />
+          <Property Name="IsPresent" Type="SByte" />
+          <NavigationProperty Name="schedule" Relationship="Self.fk02_schedule_visit" FromRole="visit_log" ToRole="schedule" />
+          <NavigationProperty Name="student" Relationship="Self.fk01_student_visit" FromRole="visit_log" ToRole="student" />
+        </EntityType>
+        <EntityType Name="week_day">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="schedules" Relationship="Self.fk03_weekday_schedule" FromRole="week_day" ToRole="schedule" />
+        </EntityType>
+        <Association Name="fk01_student_class">
+          <End Role="class" Type="Self.class" Multiplicity="1" />
+          <End Role="student" Type="Self.student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="Id_Class" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk04_classroom_schedule">
+          <End Role="classrom" Type="Self.classrom" Multiplicity="1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classrom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="Id_Classroom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_teacher_group">
+          <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+          <End Role="group" Type="Self.group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="group">
+              <PropertyRef Name="Id_teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_group_shedule">
+          <End Role="group" Type="Self.group" Multiplicity="1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="Id_Group" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_role_teacher">
+          <End Role="roles" Type="Self.role" Multiplicity="0..1" />
+          <End Role="teacher" Type="Self.teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="teacher">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_subject_schedule">
+          <End Role="subject" Type="Self.subject" Multiplicity="1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="Id_Subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_schedule_visit">
+          <End Role="schedule" Type="Self.schedule" Multiplicity="1" />
+          <End Role="visit_log" Type="Self.visit_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="schedule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="visit_log">
+              <PropertyRef Name="Id_Schedule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk03_weekday_schedule">
+          <End Role="week_day" Type="Self.week_day" Multiplicity="1" />
+          <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="week_day">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="schedule">
+              <PropertyRef Name="Id_Week_Day" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk01_student_visit">
+          <End Role="student" Type="Self.student" Multiplicity="1" />
+          <End Role="visit_log" Type="Self.visit_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="visit_log">
+              <PropertyRef Name="Id_Student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="group_student">
+          <End Role="group" Type="Self.group" Multiplicity="*" />
+          <End Role="student" Type="Self.student" Multiplicity="*" />
+        </Association>
+        <Association Name="teacher_subject">
+          <End Role="subject" Type="Self.subject" Multiplicity="*" />
+          <End Role="teacher" Type="Self.teacher" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="heroku_b27ae8c6ecb20b8Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="classes" EntityType="Self.class" />
+          <EntitySet Name="classroms" EntityType="Self.classrom" />
+          <EntitySet Name="groups" EntityType="Self.group" />
+          <EntitySet Name="roles" EntityType="Self.role" />
+          <EntitySet Name="schedules" EntityType="Self.schedule" />
+          <EntitySet Name="students" EntityType="Self.student" />
+          <EntitySet Name="subjects" EntityType="Self.subject" />
+          <EntitySet Name="teachers" EntityType="Self.teacher" />
+          <EntitySet Name="visit_log" EntityType="Self.visit_log" />
+          <EntitySet Name="week_day" EntityType="Self.week_day" />
+          <AssociationSet Name="fk01_student_class" Association="Self.fk01_student_class">
+            <End Role="class" EntitySet="classes" />
+            <End Role="student" EntitySet="students" />
+          </AssociationSet>
+          <AssociationSet Name="fk04_classroom_schedule" Association="Self.fk04_classroom_schedule">
+            <End Role="classrom" EntitySet="classroms" />
+            <End Role="schedule" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_teacher_group" Association="Self.fk01_teacher_group">
+            <End Role="teacher" EntitySet="teachers" />
+            <End Role="group" EntitySet="groups" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_group_shedule" Association="Self.fk02_group_shedule">
+            <End Role="group" EntitySet="groups" />
+            <End Role="schedule" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_role_teacher" Association="Self.fk01_role_teacher">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="teacher" EntitySet="teachers" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_subject_schedule" Association="Self.fk01_subject_schedule">
+            <End Role="subject" EntitySet="subjects" />
+            <End Role="schedule" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_schedule_visit" Association="Self.fk02_schedule_visit">
+            <End Role="schedule" EntitySet="schedules" />
+            <End Role="visit_log" EntitySet="visit_log" />
+          </AssociationSet>
+          <AssociationSet Name="fk03_weekday_schedule" Association="Self.fk03_weekday_schedule">
+            <End Role="week_day" EntitySet="week_day" />
+            <End Role="schedule" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="fk01_student_visit" Association="Self.fk01_student_visit">
+            <End Role="student" EntitySet="students" />
+            <End Role="visit_log" EntitySet="visit_log" />
+          </AssociationSet>
+          <AssociationSet Name="group_student" Association="Self.group_student">
+            <End Role="group" EntitySet="groups" />
+            <End Role="student" EntitySet="students" />
+          </AssociationSet>
+          <AssociationSet Name="teacher_subject" Association="Self.teacher_subject">
+            <End Role="subject" EntitySet="subjects" />
+            <End Role="teacher" EntitySet="teachers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="heroku_b27ae8c6ecb20b8ModelStoreContainer" CdmEntityContainer="heroku_b27ae8c6ecb20b8Entities1">
+          <EntitySetMapping Name="classes">
+            <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.class">
+              <MappingFragment StoreEntitySet="class">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="classroms">
+            <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.classrom">
+              <MappingFragment StoreEntitySet="classrom">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="groups">
+            <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.group">
+              <MappingFragment StoreEntitySet="group">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id_teacher" ColumnName="Id_teacher" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.role">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Role1" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="schedules">
+            <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.schedule">
+              <MappingFragment StoreEntitySet="schedule">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_Subject" ColumnName="Id_Subject" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="End_Time" ColumnName="End_Time" />
+                <ScalarProperty Name="Id_Group" ColumnName="Id_Group" />
+                <ScalarProperty Name="Id_Classroom" ColumnName="Id_Classroom" />
+                <ScalarProperty Name="Id_Week_Day" ColumnName="Id_Week_Day" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="students">
+            <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.student">
+              <MappingFragment StoreEntitySet="student">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Middlename" ColumnName="Middlename" />
+                <ScalarProperty Name="Id_Class" ColumnName="Id_Class" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subjects">
+            <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.subject">
+              <MappingFragment StoreEntitySet="subject">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="teachers">
+            <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.teacher">
+              <MappingFragment StoreEntitySet="teacher">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Middlename" ColumnName="Middlename" />
+                <ScalarProperty Name="DateBirth" ColumnName="DateBirth" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="visit_log">
+            <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.visit_log">
+              <MappingFragment StoreEntitySet="visit_log">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_Schedule" ColumnName="Id_Schedule" />
+                <ScalarProperty Name="Id_Student" ColumnName="Id_Student" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="week_day">
+            <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.week_day">
+              <MappingFragment StoreEntitySet="week_day">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="group_student" TypeName="heroku_b27ae8c6ecb20b8Model.group_student" StoreEntitySet="group_student">
+            <EndProperty Name="group">
+              <ScalarProperty Name="Id" ColumnName="Id_Group" />
+            </EndProperty>
+            <EndProperty Name="student">
+              <ScalarProperty Name="Id" ColumnName="Id_Student" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="teacher_subject" TypeName="heroku_b27ae8c6ecb20b8Model.teacher_subject" StoreEntitySet="teacher_subject">
+            <EndProperty Name="subject">
+              <ScalarProperty Name="Id" ColumnName="Id_Subject" />
+            </EndProperty>
+            <EndProperty Name="teacher">
+              <ScalarProperty Name="Id" ColumnName="Id_Teacher" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:DedDom"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="FirstColor" Color="#4BB9F8"></SolidColorBrush>
+        <SolidColorBrush x:Key="SecondColor" Color="#212121" ></SolidColorBrush>
+        <SolidColorBrush x:Key="ErrorColor" Color="#FF0000" Opacity="0.6"></SolidColorBrush>
+       
     </Application.Resources>
 </Application>

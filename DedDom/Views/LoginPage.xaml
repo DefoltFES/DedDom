@@ -1,0 +1,28 @@
+﻿<Page x:Class="DedDom.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DedDom"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="LoginPage">
+
+    <Grid>
+        <StackPanel Margin="50,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock FontSize="40" Foreground="{StaticResource FirstColor }">Вход</TextBlock>
+            <StackPanel HorizontalAlignment="Left">
+            <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                    <TextBox x:Name="Login"  FontSize="20" BorderBrush="{StaticResource FirstColor}" Padding="10" GotFocus="Text_OnGotFocus" Margin="0,10,0,0" VerticalContentAlignment="Center" Width="400">Логин</TextBox>
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                    <TextBox x:Name="Password"   FontSize="20" BorderBrush="{StaticResource FirstColor}" GotFocus="Text_OnGotFocus" VerticalContentAlignment="Center" Padding="10" Width="400">Пароль</TextBox>
+            </StackPanel>
+            </StackPanel>
+            <TextBlock x:Name="Error" FontSize="20" Margin="0,10,0,0" Visibility="Collapsed" Foreground="{StaticResource ErrorColor}">Неправильный логин или пароль</TextBlock>
+            <Button Click="LoginClick" Height="40" FontSize="15" Background="{StaticResource FirstColor}" Foreground="White" Margin="0,10,0,0">
+                Отправить
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

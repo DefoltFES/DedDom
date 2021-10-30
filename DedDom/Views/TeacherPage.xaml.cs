@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DedDom
+namespace DedDom.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for TeacherPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TeacherPage : Page
     {
-        public MainWindow()
+        public TeacherPage()
         {
             InitializeComponent();
-        }
-
-        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
-        {
-           MainFrame.Content=new LoginPage();
         }
     }
 }

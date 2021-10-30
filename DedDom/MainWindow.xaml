@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DedDom"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Учет Доп.Занятий" Height="720" Width="1280" Loaded="MainWindow_OnLoaded">
     <Grid>
-        
+        <Frame HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  x:Name="MainFrame"></Frame>
     </Grid>
 </Window>

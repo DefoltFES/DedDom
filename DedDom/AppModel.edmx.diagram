@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d0112b37d1444ef2bc182fef464393ef" Name="Diagram1">
+        <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.class" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.classrom" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.group" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.role" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.schedule" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.student" Width="1.5" PointX="10.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.subject" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.teacher" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.visit_log" Width="1.5" PointX="8.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.week_day" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <AssociationConnector Association="heroku_b27ae8c6ecb20b8Model.fk01_student_class" ManuallyRouted="false" />
+        <AssociationConnector Association="heroku_b27ae8c6ecb20b8Model.fk04_classroom_schedule" ManuallyRouted="false" />
+        <AssociationConnector Association="heroku_b27ae8c6ecb20b8Model.fk01_teacher_group" ManuallyRouted="false" />
+        <AssociationConnector Association="heroku_b27ae8c6ecb20b8Model.fk02_group_shedule" ManuallyRouted="false" />
+        <AssociationConnector Association="heroku_b27ae8c6ecb20b8Model.fk01_role_teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="heroku_b27ae8c6ecb20b8Model.fk01_subject_schedule" ManuallyRouted="false" />
+        <AssociationConnector Association="heroku_b27ae8c6ecb20b8Model.fk02_schedule_visit" ManuallyRouted="false" />
+        <AssociationConnector Association="heroku_b27ae8c6ecb20b8Model.fk03_weekday_schedule" ManuallyRouted="false" />
+        <AssociationConnector Association="heroku_b27ae8c6ecb20b8Model.fk01_student_visit" ManuallyRouted="false" />
+        <AssociationConnector Association="heroku_b27ae8c6ecb20b8Model.group_student" ManuallyRouted="false" />
+        <AssociationConnector Association="heroku_b27ae8c6ecb20b8Model.teacher_subject" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

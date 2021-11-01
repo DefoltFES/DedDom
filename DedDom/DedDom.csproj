@@ -91,6 +91,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddScheduleWindow.xaml.cs">
+      <DependentUpon>AddScheduleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminSchedulePage.xaml.cs">
+      <DependentUpon>AdminSchedulePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminPage.xaml.cs">
+      <DependentUpon>AdminPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AppModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -160,6 +169,18 @@
     <Compile Include="week_day.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Page Include="AddScheduleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminSchedulePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddSubjectInVisit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

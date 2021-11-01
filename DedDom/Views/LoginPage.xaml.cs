@@ -47,6 +47,10 @@ namespace DedDom
                 {
                     this.NavigationService.Navigate(new TeacherPage(Teacher));
                 }
+                else if (Teacher.role1.Role1 == "deputy director")
+                {
+                    this.NavigationService.Navigate(new AdminPage());
+                }
             }
             else
             {
@@ -54,7 +58,7 @@ namespace DedDom
             }
         }
 
-        public  bool isExist()
+        public bool isExist()
         {
             
             var teacher = App.dbContext.teachers.Where(x => x.Login==login).FirstOrDefault();

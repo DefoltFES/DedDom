@@ -1,0 +1,117 @@
+﻿<Window x:Class="DedDom.AddScheduleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DedDom"
+        mc:Ignorable="d"
+        Title="AddScheduleWindow"
+        Height="450"
+        Width="800"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        >
+    <Border CornerRadius="50"
+            BorderThickness="4"
+            BorderBrush="White"
+            Background="White">
+        <Grid>
+            <Button Content="X"
+                    FontSize="20"
+                    Grid.Row="0"
+                    Width="30"
+                    Height="30"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Margin="0,20,30,0"
+                    x:Name="closeBtn"
+                    Click="closeBtn_Click"
+                    Background="Red"
+                    BorderBrush="Transparent"/>
+            <Border BorderBrush="Black" BorderThickness="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    CornerRadius="50"
+                    Padding="30">
+
+                <StackPanel Orientation="Vertical">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                               Text="Предмет"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="0" Grid.Column="1"
+                              x:Name="subjectBox"
+                                  />
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                               Text="Время начала"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="1" Grid.Column="1"
+                                 x:Name="startTime"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0"
+                               Text="Время конца"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="2" Grid.Column="1"
+                                 x:Name="endTime"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0"
+                               Text="Группа"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="3" Grid.Column="1"
+                              x:Name="groupBox"/>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0"
+                               Text="Кабинет"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="4" Grid.Column="1"
+                              x:Name="classroomBox"/>
+                        <TextBlock Grid.Row="5" Grid.Column="0"
+                               Text="День недели"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                        <ComboBox Grid.Row="5" Grid.Column="1"
+                              x:Name="weekDayBox"/>
+                        <TextBlock Grid.Row="6" Grid.Column="0"
+                               Text="Функционирует"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                                   />
+                        <CheckBox Grid.Row="6" Grid.Column="1"
+                              x:Name="isActualCheck"
+                              HorizontalAlignment="Center"
+                                  />
+                        <Button Grid.ColumnSpan="2"
+                                Grid.Row="7"
+                                Content="Готово"
+                                x:Name="okBtn"
+                                Click="okBtn_Click">
+                            
+                        </Button>
+
+                    </Grid>
+
+                </StackPanel>
+            </Border>
+            
+        </Grid>
+    </Border>
+</Window>

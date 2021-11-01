@@ -23,9 +23,11 @@ namespace DedDom
         public int Id { get; set; }
         public int Id_Schedule { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<int> Id_Teacher { get; set; }
     
         public virtual schedule schedule { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<visit> visits { get; set; }
+        public virtual teacher teacher { get; set; }
     }
 }

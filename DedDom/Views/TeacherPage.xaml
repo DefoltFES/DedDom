@@ -17,7 +17,7 @@
 
             <StackPanel Background="White" Orientation="Vertical">
                 
-                <StackPanel Margin="0,0,0,0" HorizontalAlignment="Stretch">
+                <StackPanel Margin="0,40,0,0" HorizontalAlignment="Stretch">
                     <Button Background="Transparent" BorderBrush="Transparent"   Click="Shedule_OnClick" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Height="40">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Foreground="{StaticResource FirstColor}" FontSize="20" FontFamily="{StaticResource Medium}" Margin="10,0,0,0">
@@ -32,7 +32,7 @@
                             </TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Background="Transparent" BorderBrush="Transparent"   HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Height="42" Margin="0,15,0,0">
+                    <Button Background="Transparent" BorderBrush="Transparent" Click="Journal_OnClick"   HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Height="42" Margin="0,15,0,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Foreground="{StaticResource FirstColor}" FontFamily="{StaticResource Medium}" FontSize="20" Margin="15,0,0,0">
                                 Журнал посещений

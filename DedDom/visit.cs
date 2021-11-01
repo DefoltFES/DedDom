@@ -17,7 +17,7 @@ namespace DedDom
         public int id_visit { get; set; }
         public int Id_student { get; set; }
         public int Id_visit_log { get; set; }
-        public Nullable<sbyte> isPresent { get; set; }
+        public Nullable<bool> isPresent { get; set; }
     
         public virtual student student { get; set; }
         public virtual visit_log visit_log { get; set; }

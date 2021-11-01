@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="heroku_b27ae8c6ecb20b8Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="heroku_b27ae8c6ecb20b8Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="class">
           <Key>
             <PropertyRef Name="Id" />
@@ -53,6 +53,7 @@
           <Property Name="Id_Group" Type="int" Nullable="false" />
           <Property Name="Id_Classroom" Type="int" Nullable="false" />
           <Property Name="Id_Week_Day" Type="int" Nullable="false" />
+          <Property Name="IsActual" Type="bit" />
         </EntityType>
         <EntityType Name="student">
           <Key>
@@ -100,7 +101,7 @@
           <Property Name="id_visit" Type="int" Nullable="false" />
           <Property Name="Id_student" Type="int" Nullable="false" />
           <Property Name="Id_visit_log" Type="int" Nullable="false" />
-          <Property Name="isPresent" Type="tinyint" />
+          <Property Name="isPresent" Type="bit" />
         </EntityType>
         <EntityType Name="visit_log">
           <Key>
@@ -109,6 +110,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Schedule" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" />
+          <Property Name="Id_Teacher" Type="int" />
         </EntityType>
         <EntityType Name="week_day">
           <Key>
@@ -261,6 +263,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk03_teacher_visit">
+          <End Role="teacher" Type="Self.teacher" Multiplicity="0..1" />
+          <End Role="visit_log" Type="Self.visit_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="visit_log">
+              <PropertyRef Name="Id_Teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk03_weekday_schedule">
           <End Role="week_day" Type="Self.week_day" Multiplicity="1" />
           <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
@@ -347,6 +361,10 @@
             <End Role="visit_log" EntitySet="visit_log" />
             <End Role="visit" EntitySet="visit" />
           </AssociationSet>
+          <AssociationSet Name="fk03_teacher_visit" Association="Self.fk03_teacher_visit">
+            <End Role="teacher" EntitySet="teacher" />
+            <End Role="visit_log" EntitySet="visit_log" />
+          </AssociationSet>
           <AssociationSet Name="fk03_weekday_schedule" Association="Self.fk03_weekday_schedule">
             <End Role="week_day" EntitySet="week_day" />
             <End Role="schedule" EntitySet="schedule" />
@@ -356,8 +374,7 @@
             <End Role="schedule" EntitySet="schedule" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="heroku_b27ae8c6ecb20b8Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -412,6 +429,7 @@
           <NavigationProperty Name="subject" Relationship="Self.fk01_subject_schedule" FromRole="schedule" ToRole="subject" />
           <NavigationProperty Name="visit_log" Relationship="Self.fk02_schedule_visit" FromRole="schedule" ToRole="visit_log" />
           <NavigationProperty Name="week_day" Relationship="Self.fk03_weekday_schedule" FromRole="schedule" ToRole="week_day" />
+          <Property Name="IsActual" Type="Boolean" />
         </EntityType>
         <EntityType Name="student">
           <Key>
@@ -451,6 +469,7 @@
           <NavigationProperty Name="groups" Relationship="Self.fk01_teacher_group" FromRole="teacher" ToRole="group" />
           <NavigationProperty Name="role1" Relationship="Self.fk01_role_teacher" FromRole="teacher" ToRole="roles" />
           <NavigationProperty Name="subjects" Relationship="Self.teacher_subject" FromRole="teacher" ToRole="subject" />
+          <NavigationProperty Name="visit_log" Relationship="heroku_b27ae8c6ecb20b8Model.fk03_teacher_visit" FromRole="teacher" ToRole="visit_log" />
         </EntityType>
         <EntityType Name="visit">
           <Key>
@@ -459,7 +478,7 @@
           <Property Name="id_visit" Type="Int32" Nullable="false" />
           <Property Name="Id_student" Type="Int32" Nullable="false" />
           <Property Name="Id_visit_log" Type="Int32" Nullable="false" />
-          <Property Name="isPresent" Type="SByte" />
+          <Property Name="isPresent" Type="Boolean" />
           <NavigationProperty Name="student" Relationship="Self.fk01_student_visit" FromRole="visit" ToRole="student" />
           <NavigationProperty Name="visit_log" Relationship="Self.fk02_visitlog_visit" FromRole="visit" ToRole="visit_log" />
         </EntityType>
@@ -472,6 +491,8 @@
           <Property Name="Date" Type="DateTime" />
           <NavigationProperty Name="schedule" Relationship="Self.fk02_schedule_visit" FromRole="visit_log" ToRole="schedule" />
           <NavigationProperty Name="visits" Relationship="Self.fk02_visitlog_visit" FromRole="visit_log" ToRole="visit" />
+          <Property Name="Id_Teacher" Type="Int32" />
+          <NavigationProperty Name="teacher" Relationship="heroku_b27ae8c6ecb20b8Model.fk03_teacher_visit" FromRole="visit_log" ToRole="teacher" />
         </EntityType>
         <EntityType Name="week_day">
           <Key>
@@ -669,7 +690,23 @@
             <End Role="subject" EntitySet="subjects" />
             <End Role="teacher" EntitySet="teachers" />
           </AssociationSet>
+          <AssociationSet Name="fk03_teacher_visit" Association="heroku_b27ae8c6ecb20b8Model.fk03_teacher_visit">
+            <End Role="teacher" EntitySet="teachers" />
+            <End Role="visit_log" EntitySet="visit_log" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="fk03_teacher_visit">
+          <End Type="heroku_b27ae8c6ecb20b8Model.teacher" Role="teacher" Multiplicity="0..1" />
+          <End Type="heroku_b27ae8c6ecb20b8Model.visit_log" Role="visit_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="teacher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="visit_log">
+              <PropertyRef Name="Id_Teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -712,6 +749,7 @@
           <EntitySetMapping Name="schedules">
             <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.schedule">
               <MappingFragment StoreEntitySet="schedule">
+                <ScalarProperty Name="IsActual" ColumnName="IsActual" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Id_Subject" ColumnName="Id_Subject" />
                 <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
@@ -759,16 +797,17 @@
           <EntitySetMapping Name="visits">
             <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.visit">
               <MappingFragment StoreEntitySet="visit">
+                <ScalarProperty Name="isPresent" ColumnName="isPresent" />
                 <ScalarProperty Name="id_visit" ColumnName="id_visit" />
                 <ScalarProperty Name="Id_student" ColumnName="Id_student" />
                 <ScalarProperty Name="Id_visit_log" ColumnName="Id_visit_log" />
-                <ScalarProperty Name="isPresent" ColumnName="isPresent" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="visit_log">
             <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.visit_log">
               <MappingFragment StoreEntitySet="visit_log">
+                <ScalarProperty Name="Id_Teacher" ColumnName="Id_Teacher" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Id_Schedule" ColumnName="Id_Schedule" />
                 <ScalarProperty Name="Date" ColumnName="Date" />

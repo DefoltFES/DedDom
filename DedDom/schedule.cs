@@ -27,6 +27,7 @@ namespace DedDom
         public int Id_Group { get; set; }
         public int Id_Classroom { get; set; }
         public int Id_Week_Day { get; set; }
+        public Nullable<bool> IsActual { get; set; }
     
         public virtual classrom classrom { get; set; }
         public virtual group group { get; set; }

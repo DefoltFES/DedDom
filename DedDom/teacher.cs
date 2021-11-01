@@ -19,6 +19,7 @@ namespace DedDom
         {
             this.groups = new HashSet<group>();
             this.subjects = new HashSet<subject>();
+            this.visit_log = new HashSet<visit_log>();
         }
     
         public int Id { get; set; }
@@ -35,5 +36,7 @@ namespace DedDom
         public virtual role role1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<subject> subjects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<visit_log> visit_log { get; set; }
     }
 }

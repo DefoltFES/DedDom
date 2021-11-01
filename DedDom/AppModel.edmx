@@ -93,15 +93,22 @@
           <Property Name="Id_Teacher" Type="int" Nullable="false" />
           <Property Name="Id_Subject" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="visit">
+          <Key>
+            <PropertyRef Name="id_visit" />
+          </Key>
+          <Property Name="id_visit" Type="int" Nullable="false" />
+          <Property Name="Id_student" Type="int" Nullable="false" />
+          <Property Name="Id_visit_log" Type="int" Nullable="false" />
+          <Property Name="isPresent" Type="tinyint" />
+        </EntityType>
         <EntityType Name="visit_log">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Schedule" Type="int" Nullable="false" />
-          <Property Name="Id_Student" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" />
-          <Property Name="IsPresent" Type="tinyint" />
         </EntityType>
         <EntityType Name="week_day">
           <Key>
@@ -148,13 +155,13 @@
         </Association>
         <Association Name="fk01_student_visit">
           <End Role="student" Type="Self.student" Multiplicity="1" />
-          <End Role="visit_log" Type="Self.visit_log" Multiplicity="*" />
+          <End Role="visit" Type="Self.visit" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="student">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="visit_log">
-              <PropertyRef Name="Id_Student" />
+            <Dependent Role="visit">
+              <PropertyRef Name="Id_student" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -242,6 +249,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk02_visitlog_visit">
+          <End Role="visit_log" Type="Self.visit_log" Multiplicity="1" />
+          <End Role="visit" Type="Self.visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="visit_log">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="visit">
+              <PropertyRef Name="Id_visit_log" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk03_weekday_schedule">
           <End Role="week_day" Type="Self.week_day" Multiplicity="1" />
           <End Role="schedule" Type="Self.schedule" Multiplicity="*" />
@@ -277,6 +296,7 @@
           <EntitySet Name="subject" EntityType="Self.subject" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
           <EntitySet Name="teacher" EntityType="Self.teacher" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
           <EntitySet Name="teacher_subject" EntityType="Self.teacher_subject" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
+          <EntitySet Name="visit" EntityType="Self.visit" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
           <EntitySet Name="visit_log" EntityType="Self.visit_log" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
           <EntitySet Name="week_day" EntityType="Self.week_day" Schema="heroku_b27ae8c6ecb20b8" store:Type="Tables" />
           <AssociationSet Name="fk01_group_group_student" Association="Self.fk01_group_group_student">
@@ -293,7 +313,7 @@
           </AssociationSet>
           <AssociationSet Name="fk01_student_visit" Association="Self.fk01_student_visit">
             <End Role="student" EntitySet="student" />
-            <End Role="visit_log" EntitySet="visit_log" />
+            <End Role="visit" EntitySet="visit" />
           </AssociationSet>
           <AssociationSet Name="fk01_subject_schedule" Association="Self.fk01_subject_schedule">
             <End Role="subject" EntitySet="subject" />
@@ -322,6 +342,10 @@
           <AssociationSet Name="fk02_teacher_teacher_subject" Association="Self.fk02_teacher_teacher_subject">
             <End Role="teacher" EntitySet="teacher" />
             <End Role="teacher_subject" EntitySet="teacher_subject" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_visitlog_visit" Association="Self.fk02_visitlog_visit">
+            <End Role="visit_log" EntitySet="visit_log" />
+            <End Role="visit" EntitySet="visit" />
           </AssociationSet>
           <AssociationSet Name="fk03_weekday_schedule" Association="Self.fk03_weekday_schedule">
             <End Role="week_day" EntitySet="week_day" />
@@ -400,7 +424,7 @@
           <Property Name="Id_Class" Type="Int32" Nullable="false" />
           <Property Name="BirthDate" Type="DateTime" />
           <NavigationProperty Name="class" Relationship="Self.fk01_student_class" FromRole="student" ToRole="class" />
-          <NavigationProperty Name="visit_log" Relationship="Self.fk01_student_visit" FromRole="student" ToRole="visit_log" />
+          <NavigationProperty Name="visits" Relationship="Self.fk01_student_visit" FromRole="student" ToRole="visit" />
           <NavigationProperty Name="groups" Relationship="Self.group_student" FromRole="student" ToRole="group" />
         </EntityType>
         <EntityType Name="subject">
@@ -428,17 +452,26 @@
           <NavigationProperty Name="role1" Relationship="Self.fk01_role_teacher" FromRole="teacher" ToRole="roles" />
           <NavigationProperty Name="subjects" Relationship="Self.teacher_subject" FromRole="teacher" ToRole="subject" />
         </EntityType>
+        <EntityType Name="visit">
+          <Key>
+            <PropertyRef Name="id_visit" />
+          </Key>
+          <Property Name="id_visit" Type="Int32" Nullable="false" />
+          <Property Name="Id_student" Type="Int32" Nullable="false" />
+          <Property Name="Id_visit_log" Type="Int32" Nullable="false" />
+          <Property Name="isPresent" Type="SByte" />
+          <NavigationProperty Name="student" Relationship="Self.fk01_student_visit" FromRole="visit" ToRole="student" />
+          <NavigationProperty Name="visit_log" Relationship="Self.fk02_visitlog_visit" FromRole="visit" ToRole="visit_log" />
+        </EntityType>
         <EntityType Name="visit_log">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_Schedule" Type="Int32" Nullable="false" />
-          <Property Name="Id_Student" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" />
-          <Property Name="IsPresent" Type="SByte" />
           <NavigationProperty Name="schedule" Relationship="Self.fk02_schedule_visit" FromRole="visit_log" ToRole="schedule" />
-          <NavigationProperty Name="student" Relationship="Self.fk01_student_visit" FromRole="visit_log" ToRole="student" />
+          <NavigationProperty Name="visits" Relationship="Self.fk02_visitlog_visit" FromRole="visit_log" ToRole="visit" />
         </EntityType>
         <EntityType Name="week_day">
           <Key>
@@ -546,13 +579,25 @@
         </Association>
         <Association Name="fk01_student_visit">
           <End Role="student" Type="Self.student" Multiplicity="1" />
-          <End Role="visit_log" Type="Self.visit_log" Multiplicity="*" />
+          <End Role="visit" Type="Self.visit" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="student">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="visit_log">
-              <PropertyRef Name="Id_Student" />
+            <Dependent Role="visit">
+              <PropertyRef Name="Id_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk02_visitlog_visit">
+          <End Role="visit_log" Type="Self.visit_log" Multiplicity="1" />
+          <End Role="visit" Type="Self.visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="visit_log">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="visit">
+              <PropertyRef Name="Id_visit_log" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -564,7 +609,7 @@
           <End Role="subject" Type="Self.subject" Multiplicity="*" />
           <End Role="teacher" Type="Self.teacher" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="heroku_b27ae8c6ecb20b8Entities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="heroku_b27ae8c6ecb20b8Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="classes" EntityType="Self.class" />
           <EntitySet Name="classroms" EntityType="Self.classrom" />
           <EntitySet Name="groups" EntityType="Self.group" />
@@ -573,6 +618,7 @@
           <EntitySet Name="students" EntityType="Self.student" />
           <EntitySet Name="subjects" EntityType="Self.subject" />
           <EntitySet Name="teachers" EntityType="Self.teacher" />
+          <EntitySet Name="visits" EntityType="Self.visit" />
           <EntitySet Name="visit_log" EntityType="Self.visit_log" />
           <EntitySet Name="week_day" EntityType="Self.week_day" />
           <AssociationSet Name="fk01_student_class" Association="Self.fk01_student_class">
@@ -609,7 +655,11 @@
           </AssociationSet>
           <AssociationSet Name="fk01_student_visit" Association="Self.fk01_student_visit">
             <End Role="student" EntitySet="students" />
+            <End Role="visit" EntitySet="visits" />
+          </AssociationSet>
+          <AssociationSet Name="fk02_visitlog_visit" Association="Self.fk02_visitlog_visit">
             <End Role="visit_log" EntitySet="visit_log" />
+            <End Role="visit" EntitySet="visits" />
           </AssociationSet>
           <AssociationSet Name="group_student" Association="Self.group_student">
             <End Role="group" EntitySet="groups" />
@@ -625,7 +675,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="heroku_b27ae8c6ecb20b8ModelStoreContainer" CdmEntityContainer="heroku_b27ae8c6ecb20b8Entities1">
+        <EntityContainerMapping StorageEntityContainer="heroku_b27ae8c6ecb20b8ModelStoreContainer" CdmEntityContainer="heroku_b27ae8c6ecb20b8Entities">
           <EntitySetMapping Name="classes">
             <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.class">
               <MappingFragment StoreEntitySet="class">
@@ -706,14 +756,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="visits">
+            <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.visit">
+              <MappingFragment StoreEntitySet="visit">
+                <ScalarProperty Name="id_visit" ColumnName="id_visit" />
+                <ScalarProperty Name="Id_student" ColumnName="Id_student" />
+                <ScalarProperty Name="Id_visit_log" ColumnName="Id_visit_log" />
+                <ScalarProperty Name="isPresent" ColumnName="isPresent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="visit_log">
             <EntityTypeMapping TypeName="heroku_b27ae8c6ecb20b8Model.visit_log">
               <MappingFragment StoreEntitySet="visit_log">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Id_Schedule" ColumnName="Id_Schedule" />
-                <ScalarProperty Name="Id_Student" ColumnName="Id_Student" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,31 +17,27 @@ using System.Windows.Shapes;
 namespace DedDom.Views
 {
     /// <summary>
-    /// Interaction logic for TeacherPage.xaml
+    /// Interaction logic for TeacherGroupPage.xaml
     /// </summary>
-    public partial class TeacherPage : Page
+    public partial class TeacherGroupPage : Page
     {
         private teacher Teacher { get; set; }
-        public TeacherPage(teacher teacher)
+        public TeacherGroupPage(teacher teacher)
         {
             InitializeComponent();
             Teacher = teacher;
         }
 
-        private void TeacherPage_OnLoaded(object sender, RoutedEventArgs e)
+        private void TeacherGroupPage_OnLoaded(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content=new TeacherSchedulePage(Teacher);
+            List<group> groups = Teacher.groups.ToList();
+            Groups.ItemsSource = groups;
         }
 
-        private void Shedule_OnClick(object sender, RoutedEventArgs e)
+        private void Details_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new TeacherSchedulePage(Teacher);
-        }
-
-        private void Group_OnClick(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Content = new TeacherGroupPage(Teacher);
-
+            group group = (sender as Button).DataContext as group;
+            this.NavigationService.Navigate(new DetailsGroupPage(group));
         }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DedDom.Views;
 
 namespace DedDom
 {
@@ -42,7 +43,10 @@ namespace DedDom
             }
             if (isExist())
             {
-                MessageBox.Show("Хорошо");
+                if (Teacher.role1.Role1 == "teacher")
+                {
+                    this.NavigationService.Navigate(new TeacherPage(Teacher));
+                }
             }
             else
             {

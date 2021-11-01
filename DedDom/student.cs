@@ -17,7 +17,7 @@ namespace DedDom
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public student()
         {
-            this.visit_log = new HashSet<visit_log>();
+            this.visits = new HashSet<visit>();
             this.groups = new HashSet<group>();
         }
     
@@ -30,7 +30,7 @@ namespace DedDom
     
         public virtual @class @class { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<visit_log> visit_log { get; set; }
+        public virtual ICollection<visit> visits { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<group> groups { get; set; }
     }

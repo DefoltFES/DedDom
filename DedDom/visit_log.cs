@@ -14,13 +14,18 @@ namespace DedDom
     
     public partial class visit_log
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public visit_log()
+        {
+            this.visits = new HashSet<visit>();
+        }
+    
         public int Id { get; set; }
         public int Id_Schedule { get; set; }
-        public int Id_Student { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<sbyte> IsPresent { get; set; }
     
         public virtual schedule schedule { get; set; }
-        public virtual student student { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<visit> visits { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace DedDom
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class heroku_b27ae8c6ecb20b8Entities1 : DbContext
+    public partial class heroku_b27ae8c6ecb20b8Entities : DbContext
     {
-        public heroku_b27ae8c6ecb20b8Entities1()
-            : base("name=heroku_b27ae8c6ecb20b8Entities1")
+        public heroku_b27ae8c6ecb20b8Entities()
+            : base("name=heroku_b27ae8c6ecb20b8Entities")
         {
         }
     
@@ -33,6 +33,7 @@ namespace DedDom
         public virtual DbSet<student> students { get; set; }
         public virtual DbSet<subject> subjects { get; set; }
         public virtual DbSet<teacher> teachers { get; set; }
+        public virtual DbSet<visit> visits { get; set; }
         public virtual DbSet<visit_log> visit_log { get; set; }
         public virtual DbSet<week_day> week_day { get; set; }
     }

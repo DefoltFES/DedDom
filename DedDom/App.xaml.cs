@@ -13,6 +13,6 @@ namespace DedDom
     /// </summary>
     public partial class App : Application
     {
-        public static heroku_b27ae8c6ecb20b8Entities1 dbContext=new heroku_b27ae8c6ecb20b8Entities1();
+        public static heroku_b27ae8c6ecb20b8Entities dbContext = new heroku_b27ae8c6ecb20b8Entities();
     }
 }

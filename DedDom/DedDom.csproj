@@ -37,11 +37,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>bookcase.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=8.0.26.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
@@ -80,10 +85,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppModel.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="AppModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="class.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
@@ -109,8 +124,20 @@
     <Compile Include="teacher.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\DetailsGroupPage.xaml.cs">
+      <DependentUpon>DetailsGroupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherGroupPage.xaml.cs">
+      <DependentUpon>TeacherGroupPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TeacherPage.xaml.cs">
       <DependentUpon>TeacherPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeacherSchedulePage.xaml.cs">
+      <DependentUpon>TeacherSchedulePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="visit.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="visit_log.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
@@ -118,6 +145,10 @@
     <Compile Include="week_day.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Page Include="Views\DetailsGroupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,16 +161,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AppModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AppModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -147,7 +168,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\TeacherGroupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TeacherPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TeacherSchedulePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,6 +199,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="fonts\Roboto-Bold.ttf" />
+    <Resource Include="fonts\Roboto-Medium.ttf" />
+    <Resource Include="fonts\Roboto-Regular.ttf" />
+    <None Include="App.config" />
     <EntityDeploy Include="AppModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>AppModel.Designer.cs</LastGenOutput>
@@ -184,10 +217,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Resource Include="bookcase.ico" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppModel.Context.tt">
@@ -200,9 +233,6 @@
       <DependentUpon>AppModel.edmx</DependentUpon>
       <LastGenOutput>AppModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="fonts\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

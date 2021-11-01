@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:DedDom.Views"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
-      Title="TeacherPage">
+      Title="TeacherPage" Loaded="TeacherPage_OnLoaded">
 
     <Grid>
         <Grid.ColumnDefinitions >
@@ -16,36 +16,30 @@
         <Grid>
 
             <StackPanel Background="White" Orientation="Vertical">
-                <!--<StackPanel  Margin="25"  HorizontalAlignment="Center"  Orientation="Horizontal">
-                    <Path Fill="{StaticResource SecondColor}"  Data="{StaticResource Logo}" />
-                    <TextBlock Margin="20,0,10,0" Text="TestKnow" FontSize="35"  Foreground="White" FontFamily="{StaticResource Bold}"/>
-                </StackPanel>
-                <StackPanel Margin="30,0,0,0" HorizontalAlignment="Left">
-                    <Button Click="Main_Click" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Height="40" Style="{DynamicResource MaterialDesignFlatButton}">
+                
+                <StackPanel Margin="0,0,0,0" HorizontalAlignment="Stretch">
+                    <Button Background="Transparent" BorderBrush="Transparent"   Click="Shedule_OnClick" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Height="40">
                         <StackPanel Orientation="Horizontal">
-                            <Path Stretch="UniformToFill"  Data="{StaticResource Home}" Fill="{StaticResource MenuColor}"></Path>
-                            <TextBlock Foreground="{StaticResource MenuColor}" FontSize="20" Margin="10,0,0,0">
-                            Главная
+                            <TextBlock Foreground="{StaticResource FirstColor}" FontSize="20" FontFamily="{StaticResource Medium}" Margin="10,0,0,0">
+                            Расписание
                             </TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Click="Test_Click"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Height="42" Margin="0,15,0,0" Style="{DynamicResource MaterialDesignFlatButton}">
+                    <Button Background="Transparent" BorderBrush="Transparent"   Click="Group_OnClick"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Height="42" Margin="0,15,0,0" >
                         <StackPanel  Orientation="Horizontal">
-                            <Path Stretch="UniformToFill"  Data="{StaticResource  Test}" Fill="{StaticResource MenuColor}"></Path>
-                            <TextBlock Foreground="{StaticResource MenuColor}" FontSize="20" Margin="15,0,0,0">
-                            Тесты
+                            <TextBlock Foreground="{StaticResource FirstColor}" FontSize="20" FontFamily="{StaticResource Medium}" Margin="15,0,0,0">
+                            Группы
                             </TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Height="42" Margin="0,15,0,0" Style="{DynamicResource MaterialDesignFlatButton}">
+                    <Button Background="Transparent" BorderBrush="Transparent"   HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Height="42" Margin="0,15,0,0">
                         <StackPanel Orientation="Horizontal">
-                            <Path Stretch="UniformToFill"  Data="{StaticResource Result}" Fill="{StaticResource MenuColor}"></Path>
-                            <TextBlock Foreground="{StaticResource MenuColor}" FontSize="20" Margin="15,0,0,0">
-                                Результаты
+                            <TextBlock Foreground="{StaticResource FirstColor}" FontFamily="{StaticResource Medium}" FontSize="20" Margin="15,0,0,0">
+                                Журнал посещений
                             </TextBlock>
                         </StackPanel>
                     </Button>
-                </StackPanel>-->
+                </StackPanel>
             </StackPanel>
 
         </Grid>

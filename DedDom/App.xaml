@@ -7,6 +7,8 @@
         <SolidColorBrush x:Key="FirstColor" Color="#4BB9F8"></SolidColorBrush>
         <SolidColorBrush x:Key="SecondColor" Color="#212121" ></SolidColorBrush>
         <SolidColorBrush x:Key="ErrorColor" Color="#FF0000" Opacity="0.6"></SolidColorBrush>
-       
+        <FontFamily x:Key="Bold">Fonts/#Roboto Bold</FontFamily>
+        <FontFamily x:Key="Medium">Fonts/#Roboto Medium</FontFamily>
+        <FontFamily x:Key="Regular">Fonts/#Roboto Regular</FontFamily>
     </Application.Resources>
 </Application>

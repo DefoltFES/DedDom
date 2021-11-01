@@ -1,0 +1,124 @@
+﻿<Page x:Class="DedDom.Views.TeacherSchedulePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DedDom.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="TeacherSchedulePage" Loaded="TeacherSchedulePage_OnLoaded">
+
+    <Grid>
+         <TabControl x:Name="Schedule">
+            <TabItem Header="Понедельник" Foreground="Black" FontFamily="{StaticResource Bold}" FontSize="15">
+                <TabItem.Content>
+                    <StackPanel>
+                        <DataGrid x:Name="Monday" AutoGenerateColumns="False" Margin="10" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название кружка" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding subject.Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Группа" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding group.Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Начало занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding Start_Time}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Конец занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding End_Time}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Номер кабинета" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding classrom.Name}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel x:Name="EmptyMonday"  Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock FontSize="40"> Нет расписания</TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+             <TabItem Header="Вторник" Foreground="Black" FontFamily="{StaticResource Bold}" FontSize="15">
+                 <TabItem.Content>
+                     <StackPanel>
+                        <DataGrid x:Name="Tuesday" AutoGenerateColumns="False" Margin="10" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название кружка" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding subject.Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Группа" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding group.Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Начало занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding Start_Time}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Конец занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding End_Time}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Номер кабинета" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding classrom.Name}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel x:Name="EmptyTuesday" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center">
+                             <TextBlock FontSize="40"> Нет расписания</TextBlock>
+                         </StackPanel>
+                    </StackPanel>
+                    
+                </TabItem.Content>
+             </TabItem>
+             <TabItem Header="Среда" Foreground="Black" FontFamily="{StaticResource Bold}" FontSize="15">
+                 <TabItem.Content>
+                     <StackPanel>
+                        <DataGrid x:Name="Wednesday" AutoGenerateColumns="False" Margin="10" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название кружка" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding subject.Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Группа" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding group.Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Начало занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding Start_Time}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Конец занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding End_Time}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Номер кабинета" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding classrom.Name}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel x:Name="EmptyWednesday" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center">
+                             <TextBlock FontSize="40"> Нет расписания</TextBlock>
+                         </StackPanel>
+                    </StackPanel>
+                 </TabItem.Content>
+            </TabItem>
+             <TabItem Header="Четверг" Foreground="Black" FontFamily="{StaticResource Bold}" FontSize="15">
+                 <TabItem.Content>
+                     <StackPanel>
+                        <DataGrid x:Name="Thursday" AutoGenerateColumns="False" Margin="10" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название кружка" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding subject.Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Группа" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding group.Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Начало занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding Start_Time}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Конец занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding End_Time}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Номер кабинета" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding classrom.Name}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel x:Name="EmptyThursday" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center">
+                             <TextBlock FontSize="40"> Нет расписания</TextBlock>
+                         </StackPanel>
+                    </StackPanel>
+                 </TabItem.Content>
+            </TabItem>
+             <TabItem Header="Пятница" Foreground="Black" FontFamily="{StaticResource Bold}" FontSize="15">
+                 <TabItem.Content>
+                     <StackPanel>
+                         <DataGrid x:Name="Friday" AutoGenerateColumns="False" Margin="10" IsReadOnly="True">
+                             <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название кружка" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding subject.Name}"></DataGridTextColumn>
+                                 <DataGridTextColumn Header="Группа" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding group.Name}"></DataGridTextColumn>
+                                 <DataGridTextColumn Header="Начало занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding Start_Time}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Конец занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding End_Time}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Номер кабинета" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding classrom.Name}"></DataGridTextColumn>
+                             </DataGrid.Columns>
+                         </DataGrid>
+                        <StackPanel x:Name="EmptyFriday" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center">
+                             <TextBlock FontSize="40"> Нет расписания</TextBlock>
+                         </StackPanel>
+                    </StackPanel>
+                 </TabItem.Content>
+            </TabItem>
+             <TabItem Header="Суббота" Foreground="Black" FontFamily="{StaticResource Bold}" FontSize="15">
+                 <TabItem.Content>
+                     <StackPanel >
+                        <DataGrid  x:Name="Saturday"  AutoGenerateColumns="False" Margin="10" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название кружка" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding subject.Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Группа" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding group.Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Начало занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding Start_Time}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Конец занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding End_Time}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Номер кабинета" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding classrom.Name}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel x:Name="EmptySaturday" Visibility="Collapsed" VerticalAlignment="Center" HorizontalAlignment="Center">
+                             <TextBlock FontSize="40"> Нет расписания</TextBlock>
+                         </StackPanel>
+                    </StackPanel>
+                 </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Page>

@@ -115,6 +115,7 @@
     <Compile Include="group.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="role.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>

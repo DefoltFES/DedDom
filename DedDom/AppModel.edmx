@@ -98,7 +98,7 @@
           <Key>
             <PropertyRef Name="id_visit" />
           </Key>
-          <Property Name="id_visit" Type="int" Nullable="false" />
+          <Property Name="id_visit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_student" Type="int" Nullable="false" />
           <Property Name="Id_visit_log" Type="int" Nullable="false" />
           <Property Name="isPresent" Type="bit" />

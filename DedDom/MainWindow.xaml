@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="Учет Доп.Занятий" Height="720" Width="1280" Loaded="MainWindow_OnLoaded">
     <Grid>
-        <Frame HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  x:Name="MainFrame"></Frame>
+        <Frame  NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  x:Name="MainFrame"></Frame>
     </Grid>
 </Window>

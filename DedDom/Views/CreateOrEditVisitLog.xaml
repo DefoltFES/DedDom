@@ -6,27 +6,62 @@
       xmlns:local="clr-namespace:DedDom.Views"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="1280"
-      Title="CreateOrEditVisitLog">
+      d:DesignHeight="800" d:DesignWidth="1280"
+      Title="CreateOrEditVisitLog" Loaded="CreateOrEditVisitLog_OnLoaded">
     <Grid>
+        <ScrollViewer>
         <StackPanel>
-        <materialDesign:Card Margin="16" Padding="32">
+            
+            <materialDesign:Card Margin="16" Padding="32">
             <StackPanel>
-            <DataGrid>
+            <DataGrid AutoGenerateColumns="False" x:Name="Schedule" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Название кружка" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding subject.Name}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Группа" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding group.Name}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Начало занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding Start_Time}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Конец занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding End_Time}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Номер кабинета" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding classrom.Name}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="День Недели" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding classrom.Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="День Недели" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding week_day.Name}"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-            <Button Margin="0,10,0,0" HorizontalAlignment="Right" Foreground="White" Background="{StaticResource FirstColor}">
+            <Button Click="AddShedule_OnClick" x:Name="AddSchedule" Margin="0,10,0,0" HorizontalAlignment="Right" Foreground="White" Background="{StaticResource FirstColor}">
                 Добавить урок
             </Button>
             </StackPanel>
         </materialDesign:Card>
+            <materialDesign:Card Margin="16" Padding="32">
+                <StackPanel>
+                <TextBlock FontSize="20" FontFamily="{StaticResource Bold}">Дата</TextBlock>
+                <DatePicker Margin="0,10,0,0" x:Name="DateLog" SelectedDateChanged="DateLog_OnSelectedDateChanged"></DatePicker>
+                </StackPanel>
+            </materialDesign:Card>
+            <materialDesign:Card Margin="16" Padding="32">
+                <StackPanel>
+                <DataGrid x:Name="ListPeople" IsReadOnly="True" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Имя" FontFamily="{StaticResource Medium}" Binding="{Binding student.Name}" ></DataGridTextColumn>
+                            <DataGridTextColumn Header="Фамилия" FontFamily="{StaticResource Medium}" Binding="{Binding student.Surname}" ></DataGridTextColumn>
+                            <DataGridTextColumn Header="Отчество" FontFamily="{StaticResource Medium}" Binding="{Binding student.Middlename}" ></DataGridTextColumn>
+                            <DataGridTextColumn Header="Класс" FontFamily="{StaticResource Medium}" Binding="{Binding student.class.Name}" ></DataGridTextColumn>
+                            <DataGridTextColumn Header="Дата Рождения" FontFamily="{StaticResource Medium}" Binding="{Binding student.BirthDate,StringFormat=dd.MM.yyyy}" ></DataGridTextColumn>
+                        <DataGridTemplateColumn  Header="Был?">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                            <CheckBox Background="{StaticResource FirstColor}" IsChecked="{Binding isPresent,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></CheckBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                </StackPanel>
+            </materialDesign:Card>
+
+            <DockPanel>
+                    <Button x:Name="Edit" Visibility="Collapsed"  Margin="16" Click="Edit_OnClick" Background="Green" HorizontalAlignment="Left"  Foreground="White">Редактировать</Button>
+                    <Button x:Name="Save" Margin="16" Click="Save_OnClick" Background="Green" HorizontalAlignment="Left"  Foreground="White">Сохранить</Button>
+                <Button x:Name="Cancel" Margin="16" Background="{StaticResource FirstColor}" Click="Cancel_OnClick"  HorizontalAlignment="Right" Foreground="White">Отменить</Button>
+            </DockPanel>
         </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>

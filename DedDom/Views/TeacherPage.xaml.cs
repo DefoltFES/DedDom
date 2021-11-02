@@ -40,7 +40,6 @@ namespace DedDom.Views
         private void Group_OnClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new TeacherGroupPage(Teacher);
-
         }
 
         private void Journal_OnClick(object sender, RoutedEventArgs e)

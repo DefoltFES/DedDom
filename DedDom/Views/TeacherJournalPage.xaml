@@ -11,23 +11,31 @@
     <Grid>
         <StackPanel>
             <StackPanel Margin="0,10,30,0">
-                <Button Click="CreateClick" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignFlatButton}" VerticalContentAlignment="Center" Background="{StaticResource FirstColor}" Foreground="White" FontSize="20" >Создать</Button>
+                <Button Click="CreateClick" HorizontalAlignment="Right"  VerticalContentAlignment="Center"  Background="{StaticResource FirstColor}" Foreground="White" FontSize="20" >Создать</Button>
             </StackPanel>
-            <DataGrid x:Name="ListVisit" Margin="30">
+            <DataGrid x:Name="ListVisit" Margin="30" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Название предмета" FontSize="20" FontFamily="{StaticResource Medium}" Binding="{Binding subject.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Название предмета" FontSize="20" FontFamily="{StaticResource Medium}" Binding="{Binding schedule.subject.Name}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Дата" FontSize="20" FontFamily="{StaticResource Medium}" Binding="{Binding Date,StringFormat=dd.MM.yyyy}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="День" FontSize="20" FontFamily="{StaticResource Medium}" Binding="{Binding subject.Name}"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Группа" FontSize="20" FontFamily="{StaticResource Medium}" Binding="{Binding group.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="День" FontSize="20" FontFamily="{StaticResource Medium}" Binding="{Binding schedule.week_day.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Группа" FontSize="20" FontFamily="{StaticResource Medium}" Binding="{Binding schedule.group.Name}"></DataGridTextColumn>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button  Foreground="White" Background="{StaticResource FirstColor}">Подробнее</Button>
+                                <Button Click="Details_OnClick"  Foreground="White" Background="{StaticResource FirstColor}">Подробнее</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button  Foreground="White" Click="DeleteClick" Background="{StaticResource ErrorColor}">Удалить</Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+           
         </StackPanel>
     </Grid>
 </Page>

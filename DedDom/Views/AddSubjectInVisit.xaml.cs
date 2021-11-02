@@ -19,7 +19,7 @@ namespace DedDom.Views
     /// </summary>
     public partial class AddSubjectInVisit : Window
     {
-        private schedule AddSchedule { get; set; }
+        public schedule AddSchedule { get; set; }
         private teacher Teacher { get; set; }
         public AddSubjectInVisit(teacher teacher)
         {

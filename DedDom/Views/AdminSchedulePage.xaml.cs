@@ -39,7 +39,7 @@ namespace DedDom.Views
             {
                 if (item.Name != null && item.Surname != null && item.Middlename != null)
                 {
-                    Teachers.Add($"{item.Surname} {item.Name} {item.Middlename}");
+                    Teachers.Add($"{item.Surname}.{item.Name}.{item.Middlename}");
                 }
             }
 

@@ -31,7 +31,8 @@ namespace DedDom
 
         private void Group_OnClick(object sender, RoutedEventArgs e)
         {
-            
+
+            NavigationService.Navigate(new AdminGroup());
         }
     }
 }

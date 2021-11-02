@@ -94,6 +94,12 @@
     <Compile Include="AddScheduleWindow.xaml.cs">
       <DependentUpon>AddScheduleWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\editGroupsWin.xaml.cs">
+      <DependentUpon>editGroupsWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminGroup.xaml.cs">
+      <DependentUpon>AdminGroup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AdminSchedulePage.xaml.cs">
       <DependentUpon>AdminSchedulePage.xaml</DependentUpon>
     </Compile>
@@ -170,6 +176,14 @@
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
     <Page Include="AddScheduleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\editGroupsWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

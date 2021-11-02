@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3c9e88b5f8b54b4e8de4e1b6400e0966" Name="Diagram1" ZoomLevel="74">
+      <Diagram DiagramId="3c9e88b5f8b54b4e8de4e1b6400e0966" Name="Diagram1" ZoomLevel="97">
         <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.class" Width="1.5" PointX="8.25" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.classrom" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.group" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.group" Width="1.5" PointX="8.5" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.role" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.schedule" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.student" Width="1.5" PointX="10.5" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.subject" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.teacher" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.teacher" Width="1.5" PointX="5.125" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.visit" Width="1.5" PointX="7.5" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.visit_log" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="heroku_b27ae8c6ecb20b8Model.week_day" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />

@@ -91,6 +91,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ActualConvertor.cs" />
     <Compile Include="AppModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -131,8 +132,26 @@
     <Compile Include="teacher.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddChildrenInGroup.xaml.cs">
+      <DependentUpon>AddChildrenInGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddScheduleWindow.xaml.cs">
+      <DependentUpon>AddScheduleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddSubjectInVisit.xaml.cs">
       <DependentUpon>AddSubjectInVisit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminDetailGroupPage.xaml.cs">
+      <DependentUpon>AdminDetailGroupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminGroupPage.xaml.cs">
+      <DependentUpon>AdminGroupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminPage.xaml.cs">
+      <DependentUpon>AdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminSchedulePage.xaml.cs">
+      <DependentUpon>AdminSchedulePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreateOrEditVisitLog.xaml.cs">
       <DependentUpon>CreateOrEditVisitLog.xaml</DependentUpon>
@@ -161,7 +180,31 @@
     <Compile Include="week_day.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Page Include="Views\AddChildrenInGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddScheduleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddSubjectInVisit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminDetailGroupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminGroupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminSchedulePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

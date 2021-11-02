@@ -17,6 +17,7 @@
             <FontFamily x:Key="Bold">Fonts/#Roboto Bold</FontFamily>
             <FontFamily x:Key="Medium">Fonts/#Roboto Medium</FontFamily>
             <FontFamily x:Key="Regular">Fonts/#Roboto Regular</FontFamily>
+            <local:ActualConvertor x:Key="Actual"></local:ActualConvertor>
         </ResourceDictionary>
 
     </Application.Resources>

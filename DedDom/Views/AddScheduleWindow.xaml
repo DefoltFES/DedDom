@@ -1,0 +1,46 @@
+﻿<Window x:Class="DedDom.Views.AddScheduleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DedDom.Views"
+        mc:Ignorable="d"
+        Title="AddScheduleWindow" Height="600" Width="800">
+    <Grid>
+        <StackPanel>
+            <Button HorizontalAlignment="Right" Click="Exit" Background="Red" Foreground="White" >Закрыть</Button>
+            <StackPanel  Margin="100" VerticalAlignment="Center">
+                <StackPanel  Margin="0,0,0,0">
+                    <TextBlock FontSize="15" FontFamily="{StaticResource Bold}">Предмет</TextBlock>
+                    <ComboBox x:Name="Subject"></ComboBox>
+                </StackPanel>
+                <StackPanel  Margin="0,20,0,0">
+                    <TextBlock FontSize="15" FontFamily="{StaticResource Bold}">Группа</TextBlock>
+                    <ComboBox x:Name="Group"></ComboBox>
+                </StackPanel>
+                <StackPanel  Margin="0,20,0,0">
+                    <TextBlock FontSize="15" FontFamily="{StaticResource Bold}">Кабинет</TextBlock>
+                    <ComboBox x:Name="Classroom"></ComboBox>
+                </StackPanel>
+                <StackPanel  Margin="0,20,0,0">
+                    <TextBlock Margin="0,10,0,0" Text="Время начала"
+                               HorizontalAlignment="Left"/>
+                    <TextBox x:Name="startTime"/>
+                    <TextBlock Margin="0,10,0,0" Text="Время конца"/>
+                    <TextBox x:Name="endTime"/>
+                    <TextBlock Margin="0,10,0,0" Text="День недели"
+                              />
+                    <ComboBox  x:Name="weekDayBox"/>
+                    <CheckBox Margin="0,20,0,0" x:Name="isActualCheck" Content="Актулально"
+                              HorizontalAlignment="Left"/>
+                </StackPanel>
+                <Button Margin="0,20,0,0" Background="{StaticResource FirstColor}"
+                        Content="Готово"
+                        x:Name="okBtn"
+                        Click="okBtn_Click">
+
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

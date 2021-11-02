@@ -47,6 +47,10 @@ namespace DedDom
                 {
                     this.NavigationService.Navigate(new TeacherPage(Teacher));
                 }
+                if (Teacher.role1.Id == 2)
+                {
+                    this.NavigationService.Navigate(new AdminPage());
+                }
             }
             else
             {

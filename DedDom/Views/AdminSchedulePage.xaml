@@ -1,0 +1,100 @@
+﻿<Page x:Class="DedDom.Views.AdminSchedulePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DedDom.Views"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1280"
+      Title="AdminSchedulePage" Loaded="AdminSchedulePage_OnLoaded">
+
+    <Grid>
+        <ScrollViewer>
+<StackPanel>
+            
+        <materialDesign:Card Margin="16" Padding="32">
+            <StackPanel>
+                <DockPanel Margin="0,0,0,10">
+                        <Button  DockPanel.Dock="Left" Click="CreateClick" Background="{StaticResource FirstColor}"  Foreground="White" HorizontalAlignment="Left">
+                        Создать
+                    </Button>
+                    <Button DockPanel.Dock="Right" Click="Back_OnClick" Background="{StaticResource FirstColor}"  Foreground="White" HorizontalAlignment="Right">
+                    Назад
+                </Button>
+                </DockPanel>
+                <Grid  Margin="0,10,0,0" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                        <TextBlock FontSize="15" FontFamily="{StaticResource Bold}">День недели</TextBlock>
+                            <ComboBox x:Name="DayOfWeek"></ComboBox>
+                    </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="0,0,10,0">
+                            <TextBlock  FontSize="15" FontFamily="{StaticResource Bold}">Преподаватель</TextBlock>
+                            <ComboBox x:Name="Teacher" >
+                          
+
+                                </ComboBox>
+                    </StackPanel>
+                    <StackPanel  Grid.Column="2" Margin="0,0,10,0">
+                        <TextBlock FontSize="15" FontFamily="{StaticResource Bold}">Предмет</TextBlock>
+                        <ComboBox x:Name="Subject"></ComboBox>
+                    </StackPanel>
+                    </Grid>
+                    <StackPanel Margin="0,10,0,0">
+                        <CheckBox x:Name="Actual" Background="{StaticResource FirstColor}">
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                            </CheckBox.LayoutTransform>
+                           Не Актуально
+                        </CheckBox>
+                        <DockPanel Margin="0,10,0,0">
+                            <Button Click="Default_OnClick" DockPanel.Dock="Left"  Background="{StaticResource FirstColor}"  Foreground="White" HorizontalAlignment="Right">
+                                Сброс
+                            </Button>
+                            <Button Click="Search_OnClick" DockPanel.Dock="Right"  Background="{StaticResource FirstColor}"  Foreground="White" HorizontalAlignment="Right">
+                            Поиск
+                        </Button>
+                        </DockPanel>
+                    </StackPanel>
+                    
+            </StackPanel>
+        </materialDesign:Card>
+            
+        <materialDesign:Card Margin="16" Padding="32">
+            
+                <StackPanel>
+                <DataGrid x:Name="Schedule" IsReadOnly="True" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название кружка" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding subject.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Группа" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding group.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Начало занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding Start_Time}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Конец занятия" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding End_Time}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Кабинет" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding classrom.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="День недели" FontSize="15" Foreground="Black" FontFamily="{StaticResource Medium}" Binding="{Binding week_day.Name}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Учитель">
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding StringFormat="{}{0} {1} {2}">
+                                <Binding Path="group.teacher.Surname"/>
+                                <Binding Path="group.teacher.Name"/>
+                                <Binding Path="group.teacher.Middlename"/>
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Актуально" Binding="{Binding IsActual,Converter={StaticResource Actual}}">
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+                    <TextBlock HorizontalAlignment="Center" x:Name="Empty" Visibility="Collapsed" FontSize="40"> Нет расписания</TextBlock>
+                    </StackPanel>
+              
+        </materialDesign:Card>
+        </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</Page>

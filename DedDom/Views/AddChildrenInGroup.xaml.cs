@@ -18,11 +18,24 @@ namespace DedDom.Views
     /// <summary>
     /// Interaction logic for AddChildrenInGroup.xaml
     /// </summary>
-    public partial class AddChildrenInGroup : Page
+    public partial class AddChildrenInGroup : Window
     {
+        public List<student> AddStudents { get; set; }
         public AddChildrenInGroup()
         {
             InitializeComponent();
+            Students.ItemsSource = App.dbContext.students.ToList();
+            AddStudents=new List<student>();
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+           
+            foreach (var item in Students.SelectedItems)
+            {
+                AddStudents.Add(item as student);
+            }
+            DialogResult = true;
         }
     }
 }

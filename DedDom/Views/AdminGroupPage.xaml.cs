@@ -57,7 +57,7 @@ namespace DedDom.Views
 
         private void Create(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            this.NavigationService.Navigate(new AdminDetailGroupPage(new @group()));
         }
     }
 }

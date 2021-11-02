@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,6 +48,8 @@ namespace DedDom.Views
             Teacher.ItemsSource = Teachers;
             if (isEdit)
             {
+                Name.Text = Group.Name;
+                Name.IsEnabled = false;
                 Save.Visibility = Visibility.Collapsed;
                 Edit.Visibility = Visibility.Visible;
                 Add.Visibility = Visibility.Collapsed;
@@ -59,6 +62,7 @@ namespace DedDom.Views
 
         private void EditClick(object sender, RoutedEventArgs e)
         {
+            Name.IsEnabled = true;
             Save.Visibility = Visibility.Visible;
             Edit.Visibility = Visibility.Collapsed;
             Add.Visibility = Visibility.Visible;
@@ -67,12 +71,41 @@ namespace DedDom.Views
 
         private void SaveClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (Name.Text == "")
+            {
+                return;
+            }
+            Group.Name = Name.Text;
+            var item = Teacher.Text.Split('.');
+            var name = item[1];
+            var surname = item[0];
+            var middlename = item[2];
+            Group.teacher = App.dbContext.teachers.Where(teacher =>
+                teacher.Name == name && teacher.Surname == surname && teacher.Middlename == middlename).First();
+            Group.students = Students.DataContext as List<student>;
+            if (isEdit == false)
+            {
+                App.dbContext.groups.Add(Group);
+                App.dbContext.SaveChanges();
+            }
+            else
+            {
+                App.dbContext.groups.Attach(Group);
+                App.dbContext.Entry(Group).State = EntityState.Modified;
+                App.dbContext.SaveChanges();
+            }
+          this.NavigationService.GoBack();
         }
 
         private void Add_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            AddChildrenInGroup children = new AddChildrenInGroup();
+            
+            if (children.ShowDialog() == true)
+            {
+                Students.ItemsSource = children.AddStudents;
+            }
+           
         }
     }
 }

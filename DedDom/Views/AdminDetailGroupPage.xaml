@@ -13,8 +13,14 @@
         <StackPanel>
             <materialDesign:Card Margin="16"  Padding="32">
                 <StackPanel>
+                <StackPanel>
+                    <TextBlock FontSize="20">Название</TextBlock>
+                    <TextBox x:Name="Name"></TextBox>
+                </StackPanel>
+                <StackPanel>
                     <TextBlock FontSize="20">Учитель</TextBlock>
                     <ComboBox x:Name="Teacher"></ComboBox>
+                </StackPanel>
                 </StackPanel>
             </materialDesign:Card>
             <materialDesign:Card Margin="16"  Padding="32">

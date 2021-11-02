@@ -9,6 +9,7 @@
       Title="AddChildrenInGroup">
 
     <Grid>
+        <ScrollViewer>
         <StackPanel>
         <DataGrid  x:Name="Students" AutoGenerateColumns="False" SelectionMode="Extended">
             <DataGrid.Columns>
@@ -21,5 +22,6 @@
         </DataGrid>
             <Button Click="ButtonBase_OnClick" Margin="10" HorizontalAlignment="Left" Background="{StaticResource FirstColor}" Foreground="White">Добавить</Button>
         </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>

@@ -76,7 +76,7 @@ namespace DedDom.Views
                 return;
             }
             Group.Name = Name.Text;
-            var item = Teacher.Text.Split('.');
+            var item = Teacher.Text.Split(' ');
             var name = item[1];
             var surname = item[0];
             var middlename = item[2];

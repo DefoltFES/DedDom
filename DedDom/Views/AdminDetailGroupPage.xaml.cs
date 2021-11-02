@@ -42,7 +42,7 @@ namespace DedDom.Views
             {
                 if (item.Name != null && item.Surname != null && item.Middlename != null)
                 {
-                    Teachers.Add($"{item.Surname} {item.Name} {item.Middlename}");
+                    Teachers.Add($"{item.Surname}.{item.Name}.{item.Middlename}");
                 }
             }
             Teacher.ItemsSource = Teachers;
@@ -54,7 +54,7 @@ namespace DedDom.Views
                 Edit.Visibility = Visibility.Visible;
                 Add.Visibility = Visibility.Collapsed;
                 Teacher.IsEnabled = false;
-                Teacher.SelectedItem = Teachers.Where(x=>x==$"{Group.teacher.Surname} {Group.teacher.Name} {Group.teacher.Middlename}").First();
+                Teacher.SelectedItem = Teachers.Where(x=>x==$"{Group.teacher.Surname}.{Group.teacher.Name}.{Group.teacher.Middlename}").First();
                 Students.ItemsSource = Group.students.ToList();
             }
             
@@ -76,7 +76,7 @@ namespace DedDom.Views
                 return;
             }
             Group.Name = Name.Text;
-            var item = Teacher.Text.Split(' ');
+            var item = Teacher.Text.Split('.');
             var name = item[1];
             var surname = item[0];
             var middlename = item[2];
